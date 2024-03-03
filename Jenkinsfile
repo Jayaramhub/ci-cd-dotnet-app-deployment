@@ -14,7 +14,7 @@ pipeline{
         }
         stage('Checkout From Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/mathesh-me/dotnet-monitoring.git'
+                git branch: 'main', url: 'https://github.com/Jayaramhub/ci-cd-dotnet-app-deployment.git'
             }
         }
         stage("Sonarqube Analysis "){
@@ -55,7 +55,7 @@ pipeline{
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image mathesh1234/dotnet-app:latest > trivy.txt" 
+                sh "trivy image gjayaram311/dotnet-app:latest > trivy.txt" 
             }
         }
         stage("Docker Push"){
@@ -69,7 +69,7 @@ pipeline{
         }
         stage("Deploy to container"){
             steps{
-                sh "docker run -d --name dotnet -p 5000:5000 mathesh1234/dotnet-app:latest"
+                sh "docker run -d --name dotnet -p 5000:5000 gjayaram311/dotnet-app:latest"
             } 
         }
     }
